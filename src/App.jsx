@@ -1,16 +1,13 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import DropdownOptions from "./components/DropdownOptions";
-import { useDebounce } from "./hooks/useDebounce";
 
 function App() {
   const [query, setQuery] = useState("");
 
-  const debouncedQuery = useDebounce(query, 500);
-
-  const handleSelect = (value) => {
+  const handleSelect = useCallback((value) => {
     console.log(value);
     setQuery("");
-  };
+  }, []);
 
   return (
     <div className="p-4 w-full">
@@ -24,7 +21,7 @@ function App() {
         />
         {query && (
           <div className="absolute top-10 w-full bg-white rounded-md shadow-md">
-            <DropdownOptions query={debouncedQuery} onSelect={handleSelect} />
+            <DropdownOptions query={query} onSelect={handleSelect} />
           </div>
         )}
       </div>

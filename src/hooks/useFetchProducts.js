@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useDebounce } from "./useDebounce";
 
 const API_URL = "https://dummyjson.com/products/search";
 
@@ -6,6 +7,7 @@ export const useFetchProducts = (query) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const q = useDebounce(query, 1000);
 
   const reset = useCallback(() => {
     setData([]);
@@ -18,7 +20,7 @@ export const useFetchProducts = (query) => {
     setData([]);
     setError("");
     try {
-      const res = await fetch(`${API_URL}?q=${query}&limit=6`);
+      const res = await fetch(`${API_URL}?q=${q}&limit=6`);
       const json = await res.json();
       setData(json.products);
       setLoading(false);
@@ -27,7 +29,7 @@ export const useFetchProducts = (query) => {
     } finally {
       setLoading(false);
     }
-  }, [query]);
+  }, [q]);
 
   useEffect(() => {
     getData();
