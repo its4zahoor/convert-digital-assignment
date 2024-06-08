@@ -18,7 +18,7 @@ export const useFetchProducts = (query) => {
     setData([]);
     setError("");
     try {
-      const res = await fetch(`${API_URL}?q=${query}`);
+      const res = await fetch(`${API_URL}?q=${query}&limit=6`);
       const json = await res.json();
       setData(json.products);
       setLoading(false);
