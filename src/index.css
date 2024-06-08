@@ -6,6 +6,10 @@
   .option-text {
     @apply text-gray-600 font-bold text-lg;
   }
+
+  .btn-icon {
+    @apply cursor-pointer h-8 w-8 m-2;
+  }
 }
 
 :root {

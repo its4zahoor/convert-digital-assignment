@@ -18,7 +18,7 @@ const renderLoadingAndOptions = async () => {
 };
 
 describe("render App", () => {
-  it("Smoke Test", () => {
+  it("should render Search input", () => {
     render(<App />);
 
     expect(screen.getByPlaceholderText("Search...")).toBeInTheDocument();
