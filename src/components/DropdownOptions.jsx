@@ -20,8 +20,13 @@ const DropdownOptions = ({ query }) => {
             className="flex items-center hover:bg-slate-100 cursor-pointer rounded-md"
             onClick={handleSelect(item)}
           >
-            <img src={item.images[0]} alt={item.name} className="w-32 h-32" />
-            <h1 className="option-text">{item.title}</h1>
+            <img src={item.images[0]} alt={item.name} className="w-24 h-24" />
+            <div className="flex flex-col p-2">
+              <h1 className="option-text">{item.title}</h1>
+              <h3 className="text-left font-medium text-gray-500">
+                $ {item.price}
+              </h3>
+            </div>
           </div>
         ))}
       </div>
