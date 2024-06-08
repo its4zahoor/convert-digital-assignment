@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { expect, describe, it } from "vitest";
 import App from "./App";
 
 const renderAppAndChangeInput = async () => {
