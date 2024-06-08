@@ -11,7 +11,7 @@ const DropdownOptions = ({ query }) => {
 
   return (
     <div className="bg-white z-10 rounded-md p-2">
-      {loading && <div className="text-black leading-8">Loading...</div>}
+      {loading && <div className="option-text">Loading...</div>}
       {error && <div className="text-red-300">Error: {error}</div>}
       <div className="grid grid-cols-2 gap-4">
         {data.map((item) => (
@@ -21,7 +21,7 @@ const DropdownOptions = ({ query }) => {
             onClick={handleSelect(item)}
           >
             <img src={item.images[0]} alt={item.name} className="w-32 h-32" />
-            <h1>{item.title}</h1>
+            <h1 className="option-text">{item.title}</h1>
           </div>
         ))}
       </div>
