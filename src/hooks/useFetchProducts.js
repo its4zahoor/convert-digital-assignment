@@ -7,6 +7,12 @@ export const useFetchProducts = (query) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const reset = useCallback(() => {
+    setData([]);
+    setLoading(false);
+    setError("");
+  }, []);
+
   const getData = useCallback(async () => {
     setLoading(true);
     setData([]);
@@ -27,5 +33,5 @@ export const useFetchProducts = (query) => {
     getData();
   }, [getData]);
 
-  return { data, loading, error };
+  return { data, loading, error, reset };
 };
