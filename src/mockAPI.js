@@ -1,7 +1,8 @@
 // Instead of calling a real API, we Simulate a successful response with mock data
-import { http, HttpResponse } from "msw";
+import { http, HttpResponse, delay } from "msw";
 export const handlers = [
-  http.get("https://dummyjson.com/products/search", () => {
+  http.get("https://dummyjson.com/products/search", async () => {
+    await delay();
     return HttpResponse.json({
       products: [
         {

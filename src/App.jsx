@@ -6,7 +6,7 @@ import ClearIcon from "./assets/clear.svg";
 
 function App() {
   const [query, setQuery] = useState("");
-  const queryDebounced = useDebounce(query, 1000);
+  const queryDebounced = useDebounce(query, 500);
 
   const handleSelect = useCallback((value) => {
     console.log(value);

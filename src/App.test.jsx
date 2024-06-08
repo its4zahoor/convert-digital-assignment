@@ -11,9 +11,9 @@ const renderAppAndChangeInput = async () => {
 };
 
 const renderLoadingAndOptions = async () => {
-  expect(screen.getByText("Loading...")).toBeInTheDocument();
   await waitFor(() => {
     expect(screen.getByTestId("options-list")).toBeInTheDocument();
+    expect(screen.getByText("Loading...")).toBeInTheDocument();
   });
 };
 
@@ -24,10 +24,9 @@ describe("render App", () => {
     expect(screen.getByPlaceholderText("Search...")).toBeInTheDocument();
   });
 
-  it("should render loading indicator", () => {
+  it("should render loading indicator", async () => {
     renderAppAndChangeInput();
-
-    expect(screen.getByText("Loading...")).toBeInTheDocument();
+    await renderLoadingAndOptions();
   });
   it("should render options list", async () => {
     renderAppAndChangeInput();
@@ -36,6 +35,10 @@ describe("render App", () => {
   it("should close dropdown when option is clicked", async () => {
     renderAppAndChangeInput();
     await renderLoadingAndOptions();
+
+    await waitFor(() => {
+      expect(screen.getByText("Gucci Bloom Eau de")).toBeInTheDocument();
+    });
 
     await fireEvent.click(screen.getByText("Gucci Bloom Eau de"));
     expect(screen.queryByTestId("options-list")).not.toBeInTheDocument();
