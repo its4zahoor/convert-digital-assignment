@@ -9,6 +9,8 @@ export const useFetchProducts = (query) => {
 
   const getData = useCallback(async () => {
     setLoading(true);
+    setData([]);
+    setError("");
     try {
       const res = await fetch(`${API_URL}?q=${query}`);
       const json = await res.json();
