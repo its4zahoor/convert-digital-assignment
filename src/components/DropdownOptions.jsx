@@ -1,16 +1,16 @@
 import { useFetchProducts } from "../hooks/useFetchProducts";
 
-const DropdownOptions = ({ query }) => {
+const DropdownOptions = ({ query, onSelect }) => {
   const { data, loading, error, reset } = useFetchProducts(query);
   if (data.length === 0 && !loading && !error) return null;
 
   const handleSelect = (value) => () => {
     reset();
-    console.log(value);
+    onSelect(value);
   };
 
   return (
-    <div className="bg-white z-10 rounded-md p-2">
+    <div className="bg-white z-10 rounded-md p-2" data-testid="options-list">
       {loading && <div className="option-text">Loading...</div>}
       {error && <div className="text-red-300">Error: {error}</div>}
       <div className="grid grid-cols-2 gap-4">
